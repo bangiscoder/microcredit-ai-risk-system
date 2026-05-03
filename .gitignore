@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+*.pyc
+logs/
+<<<<<<< HEAD
+eenv/
+model/model.pkl
+=======
+model/model.pkl
+<<<<<<< HEAD
+eenv/
+=======
+>>>>>>> 3722df6f04b26b3d475e719c1b718c59b3ccc42c
+>>>>>>> 90c95581282afd51b7133ef0a1da6187f3554f07
