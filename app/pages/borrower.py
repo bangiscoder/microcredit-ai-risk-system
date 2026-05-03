@@ -1,13 +1,29 @@
 import sys
 import os
 import requests
-MODEL_URL = "https://drive.google.com/uc?export=download&id=1mDMRd5Ghp3gMcVAYoY8o-YrbWKQ-zRPT"
+
+def download_file_from_google_drive(file_id, destination):
+    URL = "https://drive.google.com/uc?export=download"
+    session = requests.Session()
+
+    response = session.get(URL, params={'id': file_id}, stream=True)
+    
+    for key, value in response.cookies.items():
+        if key.startswith('download_warning'):
+            params = {'id': file_id, 'confirm': value}
+            response = session.get(URL, params=params, stream=True)
+
+    with open(destination, "wb") as f:
+        for chunk in response.iter_content(32768):
+            if chunk:
+                f.write(chunk)
+
+# usage
+file_id = "1mDMRd5Ghp3gMcVAYoY8o-YrbWKQ-zRPT"
 MODEL_PATH = "model.pkl"
 
 if not os.path.exists(MODEL_PATH):
-    r = requests.get(MODEL_URL)
-    with open(MODEL_PATH, "wb") as f:
-        f.write(r.content)
+    download_file_from_google_drive(file_id, MODEL_PATH)
 
 model = joblib.load(MODEL_PATH)
 
