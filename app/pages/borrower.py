@@ -1,5 +1,15 @@
 import sys
 import os
+MODEL_URL = "https://drive.google.com/file/d/1mDMRd5Ghp3gMcVAYoY8o-YrbWKQ-zRPT/view?usp=sharing"
+MODEL_PATH = "model.pkl"
+
+if not os.path.exists(MODEL_PATH):
+    r = requests.get(MODEL_URL)
+    with open(MODEL_PATH, "wb") as f:
+        f.write(r.content)
+
+model = joblib.load(MODEL_PATH)
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import streamlit as st
@@ -12,15 +22,6 @@ import requests
 import joblib
 import os
 
-MODEL_URL = "https://drive.google.com/file/d/1mDMRd5Ghp3gMcVAYoY8o-YrbWKQ-zRPT/view?usp=sharing"
-MODEL_PATH = "model.pkl"
-
-if not os.path.exists(MODEL_PATH):
-    r = requests.get(MODEL_URL)
-    with open(MODEL_PATH, "wb") as f:
-        f.write(r.content)
-
-model = joblib.load(MODEL_PATH)
 # ------------------------------------------
 # Initialize Session State Defaults
 # ------------------------------------------
