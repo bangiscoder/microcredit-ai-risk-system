@@ -1,6 +1,6 @@
 import sys
 import os
-MODEL_URL = "https://drive.google.com/file/d/1mDMRd5Ghp3gMcVAYoY8o-YrbWKQ-zRPT/view?usp=sharing"
+MODEL_URL = "https://drive.google.com/uc?export=download&id=1mDMRd5Ghp3gMcVAYoY8o-YrbWKQ-zRPT"
 MODEL_PATH = "model.pkl"
 
 if not os.path.exists(MODEL_PATH):
